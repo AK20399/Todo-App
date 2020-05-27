@@ -7,10 +7,7 @@ import AddTodo from './AddTodo';
 import Card from '../extra/Card';
 
 const TodoList = () => {
-	const [todos, setTodos] = useState([
-		{ id: uuidv4(), title: 'a', body: 'abc' },
-		{ id: uuidv4(), title: 'b', body: 'xyz' },
-	]);
+	const [todos, setTodos] = useState([]);
 
 	const addNewTodo = (title, description) => {
 		let data = {
@@ -27,7 +24,20 @@ const TodoList = () => {
 		setTodos(newTodos);
 	};
 	const editTodo = (id) => {
-		console.log(id);
+		let title = window.prompt('Enter title');
+		let description = window.prompt('Enter Description');
+
+		let newTodos = [];
+		for (let i in todos) {
+			if (todos[i].id === id) {
+				newTodos.push({
+					id: id,
+					title: title,
+					body: description,
+				});
+			} else newTodos[i] = todos[i];
+		}
+		setTodos(newTodos);
 	};
 
 	return (
