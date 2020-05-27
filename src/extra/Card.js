@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-const Card = ({ deleteTodo, data }) => {
+const Card = ({ deleteTodo, data, editTodo }) => {
 	let history = useHistory();
 	const todoClicked = (e) => {
 		const node = e.target;
@@ -36,7 +36,8 @@ const Card = ({ deleteTodo, data }) => {
 							color: 'white',
 							padding: 5,
 						}}
-						onClick={editClicked}
+						// onClick={editClicked}
+						onClick={() => editTodo(data.id)}
 					>
 						Edit
 					</span>

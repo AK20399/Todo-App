@@ -1,18 +1,29 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 const EditData = ({
 	history: {
 		location: { state },
 	},
 }) => {
+	const history = useHistory();
+
 	let { paramId } = useParams();
-	const [id, setId] = useState(paramId);
+
 	const [title, setTitle] = useState(state.title);
 	const [body, setBody] = useState(state.body);
 
+	const editedData = (e) => {
+		e.preventDefault();
+		history.push('/', { id: paramId, title, body });
+	};
+
 	return (
-		<div className='container' style={{ flexDirection: 'column' }}>
+		<form
+			className='container'
+			style={{ flexDirection: 'column' }}
+			onSubmit={editedData}
+		>
 			<div className='input-group mb-3'>
 				<div className='input-group-prepend'>
 					<span className='input-group-text' id='basic-addon1'>
@@ -44,7 +55,7 @@ const EditData = ({
 				/>
 			</div>
 			<input className='btn btn-danger' type='submit' value='Edit Todo' />
-		</div>
+		</form>
 	);
 };
 

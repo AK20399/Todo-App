@@ -14,7 +14,7 @@ function App() {
 			<Header />
 			<Switch>
 				<Route exact path='/' component={TodoList} />
-				<Route path='/edit/:id' component={EditData} />
+				<Route path='/edit/:paramId' component={EditData} />
 				<Route path='/edit' component={EditData} />
 			</Switch>
 		</Router>

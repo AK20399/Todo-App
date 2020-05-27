@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -26,10 +26,9 @@ const TodoList = () => {
 		let newTodos = todos.filter((todo) => todo.id !== id);
 		setTodos(newTodos);
 	};
-
-	useEffect(() => {
-		console.log(todos);
-	}, [todos]);
+	const editTodo = (id) => {
+		console.log(id);
+	};
 
 	return (
 		<div
@@ -45,7 +44,12 @@ const TodoList = () => {
 			<AddTodo adding={addNewTodo} />
 			<div>
 				{todos.map((item) => (
-					<Card key={item.id} deleteTodo={deleteTodo} data={item} />
+					<Card
+						key={item.id}
+						deleteTodo={deleteTodo}
+						data={item}
+						editTodo={editTodo}
+					/>
 				))}
 			</div>
 		</div>
