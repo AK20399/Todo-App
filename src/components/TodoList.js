@@ -13,8 +13,6 @@ const TodoList = () => {
 	]);
 
 	const addNewTodo = (title, description) => {
-		console.log(title, description);
-
 		let data = {
 			id: uuidv4(),
 			title,
@@ -23,6 +21,12 @@ const TodoList = () => {
 
 		setTodos((prev) => [data, ...prev]);
 	};
+
+	const deleteTodo = (id) => {
+		let newTodos = todos.filter((todo) => todo.id !== id);
+		setTodos(newTodos);
+	};
+
 	useEffect(() => {
 		console.log(todos);
 	}, [todos]);
@@ -41,7 +45,7 @@ const TodoList = () => {
 			<AddTodo adding={addNewTodo} />
 			<div>
 				{todos.map((item) => (
-					<Card key={item.id}>{item.title}</Card>
+					<Card key={item.id} deleteTodo={deleteTodo} data={item} />
 				))}
 			</div>
 		</div>
