@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
 
-const AddTodo = ({ addNewTodo }) => {
+const AddTodo = ({ adding }) => {
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
 
-	const SubmitData = (e) => {
+	function submitData(e) {
 		e.preventDefault();
 		if (title === '' || description === '') {
 			alert('Please Enter data in fields');
 		} else {
-			addNewTodo(title, description);
+			adding(title, description);
 			setTitle('');
 			setDescription('');
 		}
-	};
-
+	}
 	return (
-		<form onSubmit={SubmitData}>
+		<form onSubmit={submitData}>
 			<div className='input-group mb-3'>
 				<div className='input-group-prepend'>
 					<span className='input-group-text' id='basic-addon1'>
